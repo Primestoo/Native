@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native++ Terminal</title>
+    <link rel="stylesheet" href="styles.css2">
+</head>
+<body>
+    <div class="container">
+        <h1>Native++ Terminal</h1>
+        <div id="editor-container">
+            <textarea id="code" rows="10" cols="50" placeholder='Enter your Native++ code here, e.g., say("Hello, World!")'></textarea>
+        </div>
+        <button class="button" onclick="runCode()">Run</button>
+        <button class="button" onclick="clearResults()">Clear Results</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function runCode() {
+            var code = document.getElementById('code').value.trim();
+            var output = document.getElementById('output');
+            output.innerHTML = '';
+
+            try {
+                eval(code);
+            } catch (error) {
+                output.innerHTML = '<div class="error">Syntax Error: ' + error.message + '</div>';
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('output').innerHTML = '';
+        }
+
+        function say(message) {
+            document.getElementById('output').innerHTML = '<div class="output">' + message + '</div>';
+        }
+    </script>
+</body>
+</html>
